@@ -26,20 +26,20 @@ public class Rounding {
         roundToThousandths(num);       
     }
     
-    public void roundToInteger(float number){
+    public static void roundToInteger(float number){
         int y = (int)number;
         System.out.println("Rounded to nearest integer: " + y);
     }
-    public void roundToTenths(float number){
-        float y = Math.floor(x*10 + 0.5)/10;
+    public static void roundToTenths(float number){
+        float y = (float)(Math.floor(number*10 + 0.5)/10);
         System.out.printf("Rounded to nearest tenths place: %.1f%n", y);   
     }
-    public void roundToHundredths(float number){
-        float y = Math.floor(x*100 + 0.5)/100;
-        System.out.println("Rounded to nearest hundredths place: %.2f%n", y);  
+    public static void roundToHundredths(float number){
+        float y = (float)(Math.floor(number*100 + 0.5)/100);
+        System.out.printf("Rounded to nearest hundredths place: %.2f%n", y);  
     }
-    public void roundToThousandths(float number){
-        float y = Math.floor(x*1000 + 0.5)/1000;
-        System.out.println("Rounded to nearest thousandths place: %.3f%n", y);
+    public static void roundToThousandths(float number){
+        float y = (float)(Math.floor(number*1000 + 0.5)/1000);
+        System.out.printf("Rounded to nearest thousandths place: %.3f%n", y);
     }
 }
