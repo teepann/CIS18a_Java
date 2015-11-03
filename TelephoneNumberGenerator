@@ -1,0 +1,129 @@
+//Assignment #: 1
+//Name: Ryan Dougherty
+//StudentID: 1203621947
+//Lecture Topic: PrintStream and writing out to a File
+//Description: Enumerates all possible outputs (according to Constants.java's array)
+// 			and writes them to a file using a PrintStream object.
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+/**
+ * @author Ryan
+ *
+ * Class: TelephoneNumberGenerator
+ * Description: Writes all possible enumerations of a 7-digit number to a file.
+ * 
+ */
+
+public class TelephoneNumberGenerator {
+
+	private static int counter=0;
+	private static int[] digits, arrayLoop;
+	private static String stringToWrite = "";
+	
+	/**
+	 * @param filename
+	 * Method: enumerateAllPossibleOutputsAndWriteToFile
+	 * Description: Handles the filename by enumerating all possibilities to stringToWrite, then write it to the file.
+	 * 
+	 */
+	public static void enumerateAllPossibleOutputsAndWriteToFile(String filename) {
+		PrintStream output = null;
+		try {
+			output = new PrintStream(new FileOutputStream(filename));
+			enumerateAllPossibleOutputsToString();
+			writeStringToFile(output);
+		} catch (IOException exception) {
+			exception.printStackTrace();
+			System.exit(1);
+		} finally {
+			output.close();
+		}
+	}
+	
+	/**
+	 * @param output
+	 * Method: enumerateAllPossibleOutputsToString
+	 * Description: Appends to the string all of the possible combinations of the Constants 2D array.
+	 * 		Counter is used below to assert if it is equal to the required number (2187)
+	 */
+	private static void enumerateAllPossibleOutputsToString() {
+		arrayLoop = new int[Constants.LENGTH_OF_TELEPHONE_NUMBER];
+		int upperBound = Constants.LETTERS[0].length-1, lowerBound = 0;
+		for (arrayLoop[0] = lowerBound; arrayLoop[0] <= upperBound; arrayLoop[0]++) {
+			for (arrayLoop[1] = lowerBound; arrayLoop[1] <= upperBound; arrayLoop[1]++) {
+				for (arrayLoop[2] = lowerBound; arrayLoop[2] <= upperBound; arrayLoop[2]++) {
+					for (arrayLoop[3] = lowerBound; arrayLoop[3] <= upperBound; arrayLoop[3]++) {
+						for (arrayLoop[4] = lowerBound; arrayLoop[4] <= upperBound; arrayLoop[4]++) {
+							for (arrayLoop[5] = lowerBound; arrayLoop[5] <= upperBound; arrayLoop[5]++) {
+								for (arrayLoop[6] = lowerBound; arrayLoop[6] <= upperBound; arrayLoop[6]++) {
+									for (int j = arrayLoop.length-1; j >= 0; --j) {
+										stringToWrite += Constants.LETTERS[digits[j]][arrayLoop[j]];
+										counter++;
+									}
+									stringToWrite += "\n";
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param number
+	 * Method: handleZerosOrOnes
+	 * Description: Check if there is a 0 or 1 in the number. If so, then we quit the application.
+	 * 
+	 */
+	public static void handleZerosOrOnes(long number) {
+		String str = String.valueOf(number);
+		if (str.contains("0") || str.contains("1")) {
+			System.err.print("Phone number cannot have a 0 or 1!");
+			System.exit(1);
+		}
+	}
+
+	/**
+	 * @param number
+	 * Method: insertDigits
+	 * Description: Inserts all of the digits of @param in backwards order (simple algorithm)
+	 * 		Also has a beginning assert to see if the number is within correct bounds.
+	 */
+	public static void insertDigits(long number) {
+		String str = String.valueOf(number);
+		if (str.length() != Constants.LENGTH_OF_TELEPHONE_NUMBER) {
+			System.err.print("Number not in correct bounds!");
+			System.exit(1);
+		}
+		digits = new int[Constants.LENGTH_OF_TELEPHONE_NUMBER];
+		for (int i = 0; i < Constants.LENGTH_OF_TELEPHONE_NUMBER; i++) {
+			digits[i] = (int) (number % 10);
+			number /= 10;
+		}
+	} 
+	
+	/**
+	 * @param output
+	 * Method: writeStringToFile
+	 * Description: After enumerating all possibilities, then write getBytes() to the PrintStream.
+	 * 
+	 */
+	private static void writeStringToFile(PrintStream output) {
+		try {
+			if (counter != Constants.NUMBER_OF_TIMES_LOOPED) {
+				System.err.print("Did not loop correctly!");
+				assert(counter != Constants.NUMBER_OF_TIMES_LOOPED);	
+			} else {
+				output.write(stringToWrite.getBytes());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			output.close();
+		}
+	}
+}
