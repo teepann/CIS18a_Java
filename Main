@@ -1,0 +1,20 @@
+//Assignment #: 1
+//Name: Ryan Dougherty
+//StudentID: 1203621947
+//Lecture Topic: PrintStream and writing out to a File
+//Description: Main method of program, calls Telephone's run method
+
+import java.util.Scanner;
+
+/**
+ * @author Ryan
+ *
+ * Main class of program. Reads in an integer, then calls Telephone's run() method on that number.
+ *
+ */
+public class Main {
+	public static void main(String args[]) {
+		Scanner input = new Scanner(System.in);
+		Telephone.run(input.nextLong());
+	}
+}
