@@ -1,0 +1,40 @@
+//Assignment #: 1
+//Name: Ryan Dougherty
+//StudentID: 1203621947
+//Lecture Topic: PrintStream and writing out to a File
+//Description: All of the constants of the program.
+
+/**
+ * @author Ryan
+ *
+ * Class: Constants
+ * Description: A list of all the constants used throughout the program.
+ */
+public class Constants {
+	public static final int 		LENGTH_OF_TELEPHONE_NUMBER = 7;
+	public static final String[][] 	LETTERS =
+		{
+		{"","",""},			// 0 (doesn't count)
+		{"","",""},    		// 1 (doesn't count)
+		{"A","B","C"}, 		// 2
+		{"D","E","F"}, 		// 3
+		{"G","H","I"}, 		// 4
+		{"J","K","L"}, 		// 5
+		{"M","N","O"}, 		// 6 
+		{"P","R","S"}, 		// 7
+		{"T","U","V"}, 		// 8
+		{"W","X","Y"}		// 9
+		};
+	public static final int 		LOWER_BOUND = (int) 1e7;
+	public static final int			UPPER_BOUND = LOWER_BOUND*10;
+	private static String 		NAME_OF_FILE = "phone.txt";
+	public static final int 		NUMBER_OF_TIMES_LOOPED = 2187*7;
+
+	public static String getNAME_OF_FILE() {
+		return NAME_OF_FILE;
+	}
+
+	public static void setNAME_OF_FILE(String nAME_OF_FILE) {
+		NAME_OF_FILE = nAME_OF_FILE;
+	}
+}
