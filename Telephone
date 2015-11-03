@@ -1,0 +1,28 @@
+//Assignment #: 1
+//Name: Ryan Dougherty
+//StudentID: 1203621947
+//Lecture Topic: PrintStream and writing out to a File
+//Description: Handles a number to be passed to TelephoneNumberGenerator
+
+/**
+ * @author Ryan
+ *
+ * Class Telephone
+ * Description: Handles a number to be passed to TelephoneNumberGenerator
+ */
+public class Telephone {
+	
+	/**
+	 * @param number
+	 * 
+	 * Handles the 7-digit input. 
+	 * 
+	 * First checks if there are 0's or 1's, then inserts the digits if not, 
+	 * 		then writes everything to the file.
+	 */
+	public static void run(long number) {
+		TelephoneNumberGenerator.handleZerosOrOnes(number);
+		TelephoneNumberGenerator.insertDigits(number);
+		TelephoneNumberGenerator.enumerateAllPossibleOutputsAndWriteToFile(Constants.getNAME_OF_FILE());
+	}
+}
